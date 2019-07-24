@@ -52,13 +52,18 @@ defmodule Leochats.Web do
       import Leochats.Router.Helpers
       import Leochats.ErrorHelpers
       import Leochats.Gettext
+      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
+      import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
+
+
   end
 
   def channel do
@@ -69,6 +74,7 @@ defmodule Leochats.Web do
       import Ecto
       import Ecto.Query
       import Leochats.Gettext
+
     end
   end
 
