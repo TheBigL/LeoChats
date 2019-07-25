@@ -3,7 +3,8 @@ defmodule Leochats.Endpoint do
 
   socket "/socket", Leochats.UserSocket
 
-  socket "/live", Phoenix.LiveView.Socket
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: true, logpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
