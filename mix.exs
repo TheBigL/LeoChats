@@ -34,6 +34,7 @@ defmodule Leochats.Mixfile do
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
      {:phoenix_ecto, "~> 3.0"},
+     {:jason, "~> 1.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.13.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},

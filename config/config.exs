@@ -23,10 +23,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Uses Jason for JSON Parsing
-config :phoenix, :json_library, Jason
+  # Use Jason for JSON parsing in Phoenix
+  config :phoenix, :json_library, Jason
 
-config :phoenix, :template_engines, [leex: Phoenix.LiveView.Engine] 
+config :phoenix, :template_engines, [leex: Phoenix.LiveView.Engine]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
