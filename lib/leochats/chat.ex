@@ -3,12 +3,15 @@ defmodule Leochats.Chat do
   The Chat context.
   """
 
-  @topic inspect(__MODULE__)
+
 
   import Ecto.Query, warn: false
   alias Leochats.Repo
 
   alias Leochats.Chat.Message
+
+  @topic inspect(__MODULE__)
+
 
   @doc """
   Returns the list of messages.
@@ -55,6 +58,7 @@ defmodule Leochats.Chat do
     %Message{}
     |> Message.changeset(attrs)
     |> Repo.insert()
+    |> notify_subs([:message, :inserted])
   end
 
   @doc """
@@ -73,6 +77,7 @@ defmodule Leochats.Chat do
     message
     |> Message.changeset(attrs)
     |> Repo.update()
+    |> notify_subs([:message, :updated])
   end
 
   @doc """
@@ -88,7 +93,9 @@ defmodule Leochats.Chat do
 
   """
   def delete_message(%Message{} = message) do
-    Repo.delete(message)
+    message
+    |> Repo.delete()
+    |> notify_subs([:message, :deleted])
   end
 
   @doc """
@@ -102,5 +109,15 @@ defmodule Leochats.Chat do
   """
   def change_message(%Message{} = message) do
     Message.changeset(message, %{})
+  end
+
+
+  defp notify_subs({:ok, result}, event) do
+    Phoenix.PubSub.broadcast(Livechat.PubSub, @topic, {__MODULE__, event, result})
+    {:ok, result}
+  end
+
+  defp notify_subs({:error, reason}, _event) do
+    {:error, reason}
   end
 end
