@@ -3,6 +3,8 @@ defmodule Leochats.Chat do
   The Chat context.
   """
 
+  @topic inspect(__MODULE__)
+
   import Ecto.Query, warn: false
   alias Leochats.Repo
 
