@@ -2,6 +2,6 @@ defmodule Leochats.PageController do
   use Leochats.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    Phoenix.LiveView.Controller.live_render(conn, LivechatWeb.Live.Index, session: %{})
   end
 end
