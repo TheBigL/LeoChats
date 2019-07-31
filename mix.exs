@@ -40,7 +40,7 @@ defmodule Leochats.Mixfile do
      {:phoenix_html, "~> 2.13.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
-     {:plug_cowboy, "~> 2.0"}]
+     {:plug_cowboy, "~> 2.1"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
